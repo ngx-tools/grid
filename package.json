@@ -1,0 +1,23 @@
+{
+  "name": "ngm-grid",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mstmvd/ngm-grid"
+  },
+  "keywords": ["ngm", "base", "core", "angular", "material", "responsive", "flex", "datatable", "grid", "table"],
+  "author": "Mostafa Movahedi",
+  "license": "MIT",
+  "peerDependencies": {
+    "@angular/common": "^7.2.0",
+    "@angular/core": "^7.2.0",
+    "ngm-base": "^1.0.3",
+    "angular-datatables": "^7.0.0",
+    "datatables.net": "^1.10.19",
+    "datatables.net-buttons": "^1.5.4",
+    "datatables.net-buttons-dt": "^1.5.4",
+    "datatables.net-dt": "^1.10.19",
+    "datatables.net-responsive": "^2.2.3",
+    "datatables.net-responsive-dt": "^2.2.3"
+  }
+}
