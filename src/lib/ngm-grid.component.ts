@@ -4,7 +4,7 @@ import {
     Input,
     OnChanges,
     OnDestroy,
-    OnInit,
+    OnInit, Optional,
     Output,
     SimpleChanges,
     ViewChild,
@@ -21,7 +21,7 @@ import 'reflect-metadata';
 @Component({
     selector: 'ngm-grid',
     template: `
-        <div [dir]="this.dir" [ngClass]="{'rtl-support': this.dir === 'rtl'}">
+        <div [dir]="baseService.dir" [class]="baseService.dir === 'rtl' ? 'rtl-support' : ''">
             <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover" width="100%">
                 <thead *ngIf="entities?.length > 0">
                 <tr>
@@ -114,14 +114,13 @@ export class NgmGridComponent<Entity extends AbstractEntity> implements OnInit, 
 
     entityGridOptions: Map<string, GridOption> = new Map<string, GridOption>();
 
-
     dtLangFile = {
         fa: 'Persian',
         en: 'English'
     };
 
-    constructor(public translate: TranslateService, private router: Router,
-                private route: ActivatedRoute, public baseService: NgmBaseService) {
+    constructor(public translate: TranslateService, @Optional() private router: Router, @Optional() private route: ActivatedRoute,
+                public baseService: NgmBaseService) {
     }
 
     ngOnChanges(changes: SimpleChanges): void {
@@ -221,7 +220,9 @@ export class NgmGridComponent<Entity extends AbstractEntity> implements OnInit, 
     }
 
     routerFunc(entity, route) {
-        this.router.navigate(route.split('/'), {relativeTo: this.route});
+        if (this.route && this.router) {
+            this.router.navigate(route.split('/'), {relativeTo: this.route});
+        }
     }
 
     ngOnDestroy(): void {
